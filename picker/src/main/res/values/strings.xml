@@ -1,0 +1,12 @@
+<resources>
+    <string name="picker_confirm">Done</string>
+    <string name="picker_no_video_play_app">No App exists for playing video!</string>
+    <string name="picker_record_audio">Record Audio</string>
+    <string name="picker_rationale_storage">Need Reading Storage Permission for Picking Files</string>
+    <string name="picker_up_to_max">Already up to max</string>
+    <string name="picker_no_photo_app">No photo App in this phone!</string>
+    <string name="picker_no_audio_play_app">No App exists for playing audio!</string>
+    <string name="picker_no_video_app">No video App in this phone!</string>
+    <string name="picker_no_audio_app">No audio App in this phone!</string>
+    <string name="picker_all">All</string>
+</resources>

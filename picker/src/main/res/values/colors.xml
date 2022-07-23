@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    标题颜色-->
+    <color name="picker_title_color">#FFFFFF</color>
+    <!--    标题字号-->
+    <dimen name="picker_title_size">16sp</dimen>
+    <!--    标题高度-->
+    <dimen name="picker_title_height">48dp</dimen>
+    <!--    标题栏返回图标的颜色 svg -->
+    <color name="picker_icon_back_color">#FFFFFF</color>
+    <!--    标题背景色-->
+    <color name="picker_toolbar_background">#3F51B5</color>
+    <!--    内容视图的背景色-->
+    <color name="picker_content_background">#ebebeb</color>
+    <!--    item的背景颜色-->
+    <color name="picker_item_background">#666666</color>
+    <!--    选中浮层颜色-->
+    <color name="picker_shadow_background">#78333232</color>
+    <!--    分割符的颜色-->
+    <color name="picker_recyclerview_divider_background">#EEEEEE</color>
+</resources>
