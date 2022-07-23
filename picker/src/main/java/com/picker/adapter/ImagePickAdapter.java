@@ -65,7 +65,7 @@ public class ImagePickAdapter extends BaseAdapter<ImageFile, ImagePickAdapter.Im
         if (params != null) {
             WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
             int width = wm.getDefaultDisplay().getWidth();
-            params.height = width / ImagePickActivity.COLUMN_NUMBER;
+            params.height = width / Picker.config.column;
         }
         return new ImagePickViewHolder(itemView);
     }

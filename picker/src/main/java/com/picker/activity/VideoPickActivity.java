@@ -32,8 +32,6 @@ import java.util.List;
 
 public class VideoPickActivity extends BaseActivity {
     public static final String THUMBNAIL_PATH = "FilePick";
-
-    public static final int COLUMN_NUMBER = 3;
     private int mMaxNumber;
     private int mCurrentNumber = 0;
     private RecyclerView mRecyclerView;
@@ -71,7 +69,7 @@ public class VideoPickActivity extends BaseActivity {
         tv_count.setText(mCurrentNumber + "/" + mMaxNumber);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_video_pick);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, COLUMN_NUMBER);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, Picker.config.column);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.addItemDecoration(new DividerGridItemDecoration(this));
 

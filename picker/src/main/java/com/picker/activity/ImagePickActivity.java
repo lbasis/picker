@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImagePickActivity extends BaseActivity {
-    public static final int COLUMN_NUMBER = 3;
     private int mMaxNumber;
     private int mCurrentNumber = 0;
     private RecyclerView mRecyclerView;
@@ -66,7 +65,7 @@ public class ImagePickActivity extends BaseActivity {
         tv_count.setText(mCurrentNumber + "/" + mMaxNumber);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_image_pick);
-        final GridLayoutManager layoutManager = new GridLayoutManager(this, COLUMN_NUMBER);
+        final GridLayoutManager layoutManager = new GridLayoutManager(this, Picker.config.column);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.addItemDecoration(new DividerGridItemDecoration(this));
         mAdapter = new ImagePickAdapter(this, isNeedCamera, enablePreview, mMaxNumber);

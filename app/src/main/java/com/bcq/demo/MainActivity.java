@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTvResult = (TextView) findViewById(R.id.tv_result);
+        Picker.init(7,9,false);
     }
 
     @Override
@@ -31,16 +32,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = v.getId();
         switch (id) {
             case R.id.btn_pick_image:
-                Picker.pickImage(this, 9, true, true, false, true);
+                Picker.pickImage(this, true, true);
                 break;
             case R.id.btn_pick_video:
-                Picker.pickVideo(this, 9, true, true, true);
+                Picker.pickVideo(this,  true);
                 break;
             case R.id.btn_pick_audio:
-                Picker.pickAudio(this, 9, true, true, true);
+                Picker.pickAudio(this, true);
                 break;
             case R.id.btn_pick_file:
-                Picker.pickFile(this, 9, true, new String[]{"xlsx", "xls", "doc", "dOcX", "ppt", "pptx", "pdf","txt"});
+                Picker.pickFile(this, new String[]{"xlsx", "xls", "doc", "dOcX", "ppt", "pptx", "pdf", "txt"});
                 break;
         }
     }

@@ -48,34 +48,37 @@ public class Picker {
     }
 
     public static class Config {
-        @DrawableRes
-        public int navigationIcon;
-        @ColorRes
-        public int titleBarTextColor;
-        @ColorRes
-        public int titleBarBackground;
-        @ColorRes
-        public int contentBackground;
+        // 显示的列数
+        public int column = 3;
+
+        // 是否显示文件夹
+        public boolean showFolder = true;
+
+        // 最大选择个数
+        public int maxCount = DEFAULT_MAX_COUNT;
     }
 
-    private static Config config = new Config();
+    public final static Config config = new Config();
 
-    public static void setConfig(Config config) {
-        Picker.config = config;
+    /**
+     * 初始化默认配置
+     *
+     * @param column     显示的列数
+     * @param maxCount   选择最大个数
+     * @param showFolder 是否显示文件夹目录
+     */
+    public static void init(int column, int maxCount, boolean showFolder) {
+        config.column = Math.min(column, 5);
+        config.maxCount = maxCount;
+        config.showFolder = showFolder;
     }
 
-    public static void configTooleBar(Toolbar toolbar) {
-        if (null == config) return;
-        if (config.navigationIcon > 0) {
-            toolbar.setNavigationIcon(config.navigationIcon);
-        }
-        if (config.titleBarBackground > 0) {
-            toolbar.setBackgroundResource(config.titleBarBackground);
-        }
-    }
-
-    public static void init(Config config) {
-
+    /**
+     * @param activity Activity
+     * @param suffix   选择的文件后缀名
+     */
+    public static void pickFile(Activity activity, String[] suffix) {
+        pickFile(activity, suffix, config.maxCount, config.showFolder);
     }
 
     /**
@@ -84,7 +87,7 @@ public class Picker {
      * @param showFolder 是否显示文件夹
      * @param suffix     选择的文件后缀名
      */
-    public static void pickFile(Activity activity, int max, boolean showFolder, String[] suffix) {
+    public static void pickFile(Activity activity, String[] suffix, int max, boolean showFolder) {
         Intent intent = new Intent(activity, NormalFilePickActivity.class);
         intent.putExtra(MAX_COUNT, max);
         intent.putExtra(SHOW_FOLDER_LIST, showFolder);
@@ -93,7 +96,18 @@ public class Picker {
     }
 
     /**
-     * 选择音频图片
+     * 选择图片
+     *
+     * @param activity      Activity
+     * @param showCamera    是否显示相机拍照
+     * @param enablePreview 是可以预览
+     */
+    public static void pickImage(Activity activity, boolean enablePreview, boolean showCamera) {
+        pickImage(activity, enablePreview, true, showCamera, config.maxCount, config.showFolder);
+    }
+
+    /**
+     * 选择图片
      *
      * @param activity      Activity
      * @param max           最大数
@@ -102,7 +116,7 @@ public class Picker {
      * @param enablePreview 是可以预览
      * @param autoSelected  拍照后是否自动选择
      */
-    public static void pickImage(Activity activity, int max, boolean showCamera, boolean showFolder, boolean enablePreview, boolean autoSelected) {
+    public static void pickImage(Activity activity, boolean enablePreview, boolean showCamera, boolean autoSelected, int max, boolean showFolder) {
         Intent intent = new Intent(activity, ImagePickActivity.class);
         intent.putExtra(SHOW_CAMERA, showCamera);
         intent.putExtra(MAX_COUNT, max);
@@ -110,6 +124,17 @@ public class Picker {
         intent.putExtra(IS_TAKEN_AUTO_SELECTED, autoSelected);
         intent.putExtra(ENABLE_PREVIEW, true);
         activity.startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE);
+    }
+
+
+    /**
+     * 选择音频文件
+     *
+     * @param activity   Activity
+     * @param showRecord 是否显示麦克风录制
+     */
+    public static void pickAudio(Activity activity, boolean showRecord) {
+        pickAudio(activity, showRecord, true, config.maxCount, config.showFolder);
     }
 
     /**
@@ -121,7 +146,7 @@ public class Picker {
      * @param showFolder   是否显示文件夹
      * @param autoSelected 录制后是否自动选择
      */
-    public static void pickAudio(Activity activity, int max, boolean showRecord, boolean showFolder, boolean autoSelected) {
+    public static void pickAudio(Activity activity, boolean showRecord, boolean autoSelected, int max, boolean showFolder) {
         Intent intent = new Intent(activity, AudioPickActivity.class);
         intent.putExtra(MAX_COUNT, max);
         intent.putExtra(IS_NEED_RECORDER, showRecord);
@@ -131,13 +156,25 @@ public class Picker {
     }
 
     /**
+     * 选择视频文件
+     *
+     * @param activity   Activity
+     * @param showCamera 是否显示相机录制
+     */
+    public static void pickVideo(Activity activity, boolean showCamera) {
+        pickVideo(activity, showCamera, true, config.maxCount, config.showFolder);
+    }
+
+    /**
+     * 选择视频文件
+     *
      * @param activity     Activity
      * @param max          最大数
      * @param showCamera   是否显示相机录制
      * @param showFolder   是否显示文件夹
      * @param autoSelected 录制后是否自动选择
      */
-    public static void pickVideo(Activity activity, int max, boolean showCamera, boolean showFolder, boolean autoSelected) {
+    public static void pickVideo(Activity activity, boolean showCamera, boolean autoSelected, int max, boolean showFolder) {
         Intent intent = new Intent(activity, VideoPickActivity.class);
         intent.putExtra(MAX_COUNT, max);
         intent.putExtra(SHOW_CAMERA, showCamera);

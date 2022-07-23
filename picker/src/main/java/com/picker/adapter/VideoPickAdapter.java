@@ -60,7 +60,7 @@ public class VideoPickAdapter extends BaseAdapter<VideoFile, VideoPickAdapter.Vi
         if (params != null) {
             WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
             int width = wm.getDefaultDisplay().getWidth();
-            params.height = width / VideoPickActivity.COLUMN_NUMBER;
+            params.height = width / Picker.config.column;
         }
         return new VideoPickViewHolder(itemView);
     }
